@@ -48,6 +48,7 @@ public class Series implements Parcelable {
             e.printStackTrace();
         }*/
     }
+
     public int getId() {
         return id;
     }
