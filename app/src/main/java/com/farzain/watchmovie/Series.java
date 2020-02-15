@@ -33,20 +33,6 @@ public class Series implements Parcelable {
     };
 
     public Series() {
-        /*try {
-            String name = jsonObject.getString("name");
-            String overview = jsonObject.getString("overview");
-            String poster_path = jsonObject.getString("poster_path");
-            String first_air_date = jsonObject.getString("first_air_date");
-
-            this.name = name;
-            this.synopsis = overview;
-            this.photo = poster_path;
-            this.release = first_air_date;
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
     }
 
     public int getId() {

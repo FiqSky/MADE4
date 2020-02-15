@@ -43,6 +43,7 @@ public class SeriesViewModel extends ViewModel {
 
                         JSONObject seriesObject = list.getJSONObject(i);
                         Series seriesItems = new Series();
+                        seriesItems.setId(seriesObject.getInt("id"));
                         seriesItems.setName(seriesObject.getString("name"));
                         seriesItems.setSynopsis(seriesObject.getString("overview"));
                         seriesItems.setRelease(seriesObject.getString("first_air_date"));

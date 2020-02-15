@@ -72,14 +72,14 @@ public class FavoriteHelper {
                 null,
                 null,
                 null,
-                DatabaseContract.MovieColumns._ID + " ASC",
+                _ID + " ASC",
                 null);
         cursor.moveToFirst();
         Movie movie;
         if (cursor.getCount() > 0) {
             do {
                 movie = new Movie();
-                movie.setId(cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseContract.MovieColumns._ID)));
+                movie.setId(cursor.getInt(cursor.getColumnIndexOrThrow(_ID)));
                 movie.setName(cursor.getString(cursor.getColumnIndexOrThrow(TITLE)));
                 movie.setSynopsis(cursor.getString(cursor.getColumnIndexOrThrow(OVERVIEW)));
                 movie.setRelease(cursor.getString(cursor.getColumnIndexOrThrow(RELESE_DATE)));
@@ -94,9 +94,9 @@ public class FavoriteHelper {
     }
 
     public long insertMovie(Movie movie) {
-        Log.d(TAG, "insertMovie: " + movie.getName()+movie.getSynopsis()+movie.getRelease()+movie.getPhoto());
+        Log.d(TAG, "insertMovie: " + movie.getName() + movie.getSynopsis() + movie.getRelease() + movie.getPhoto());
         ContentValues contentValues = new ContentValues();
-        contentValues.put(DatabaseContract.MovieColumns._ID, movie.getId());
+        contentValues.put(_ID, movie.getId());
         contentValues.put(TITLE, movie.getName());
         Log.d(TAG, "insertMovie: " + movie.getName());
         contentValues.put(OVERVIEW, movie.getSynopsis());
@@ -106,22 +106,12 @@ public class FavoriteHelper {
         return database.insert(DATABASE_MOVIE, null, contentValues);
     }
 
-    public int updateMovie(Movie movie) {
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(DatabaseContract.MovieColumns._ID, movie.getId());
-        contentValues.put(TITLE, movie.getName());
-        contentValues.put(OVERVIEW, movie.getSynopsis());
-        contentValues.put(RELESE_DATE, movie.getRelease());
-        contentValues.put(POSTER_PATH, movie.getPhoto());
-        return database.update(DATABASE_MOVIE, contentValues, DatabaseContract.MovieColumns._ID + "= '" + movie.getName() + "'", null);
-    }
-
     public int deleteMovie(int id) {
-        return database.delete(DATABASE_MOVIE, DatabaseContract.MovieColumns._ID + " = '" + id + "'", null);
+        return database.delete(DATABASE_MOVIE, _ID + " = '" + id + "'", null);
     }
 
     public boolean checkMovie(int id) {
-        String query = "SELECT * FROM " + DATABASE_MOVIE + " WHERE " + DatabaseContract.MovieColumns._ID + " =?";
+        String query = "SELECT * FROM " + DATABASE_MOVIE + " WHERE " + _ID + " =?";
         Cursor cursor = database.rawQuery(query, new String[]{String.valueOf(id)});
         boolean exist = false;
         if (cursor.moveToFirst()) {
@@ -140,14 +130,14 @@ public class FavoriteHelper {
                 null,
                 null,
                 null,
-                DatabaseContract.SeriesColumns._ID + " ASC",
+                _ID + " ASC",
                 null);
         cursor.moveToFirst();
         Series series;
         if (cursor.getCount() > 0) {
             do {
                 series = new Series();
-                series.setId(cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseContract.SeriesColumns._ID)));
+                series.setId(cursor.getInt(cursor.getColumnIndexOrThrow(_ID)));
                 series.setName(cursor.getString(cursor.getColumnIndexOrThrow(TITLE_SERIES)));
                 series.setRelease(cursor.getString(cursor.getColumnIndexOrThrow(RELESE_DATE_SERIES)));
                 series.setPhoto(cursor.getString(cursor.getColumnIndexOrThrow(POSTER_PATH_SERIES)));
@@ -165,7 +155,7 @@ public class FavoriteHelper {
 
     public long insertSeries(Series series) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(DatabaseContract.SeriesColumns._ID, series.getId());
+        contentValues.put(_ID, series.getId());
         contentValues.put(TITLE_SERIES, series.getName());
         contentValues.put(OVERVIEW_SERIES, series.getSynopsis());
         contentValues.put(RELESE_DATE_SERIES, series.getRelease());
@@ -173,23 +163,13 @@ public class FavoriteHelper {
         return database.insert(DATABASE_SERIES, null, contentValues);
     }
 
-    public int updateSeries(Series series) {
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(DatabaseContract.SeriesColumns._ID, series.getId());
-        contentValues.put(TITLE_SERIES, series.getName());
-        contentValues.put(OVERVIEW_SERIES, series.getSynopsis());
-        contentValues.put(RELESE_DATE_SERIES, series.getRelease());
-        contentValues.put(POSTER_PATH_SERIES, series.getPhoto());
-        return database.update(DATABASE_SERIES, contentValues, DatabaseContract.SeriesColumns._ID + "= '" + series.getName() + "'", null);
-    }
-
     public int deleteSeries(int id) {
         database.isOpen();
-        return database.delete(DATABASE_SERIES, DatabaseContract.SeriesColumns._ID + " = '" + id + "'", null);
+        return database.delete(DATABASE_SERIES, _ID + " = '" + id + "'", null);
     }
 
     public boolean checkSeries(int id) {
-        String query = "SELECT * FROM " + DATABASE_SERIES + " WHERE " + DatabaseContract.SeriesColumns._ID + " =?";
+        String query = "SELECT * FROM " + DATABASE_SERIES + " WHERE " + _ID + " =?";
         Cursor cursor = database.rawQuery(query, new String[]{String.valueOf(id)});
         boolean exist = false;
         if (cursor.moveToFirst()) {
