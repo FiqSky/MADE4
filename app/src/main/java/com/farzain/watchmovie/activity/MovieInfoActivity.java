@@ -62,7 +62,7 @@ public class MovieInfoActivity extends AppCompatActivity {
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        if (helper.checkMovie(movie.getId())) {
+        if (helper.checkMovie(movie.getName())) {
             menu.findItem(R.id.favorite_menu).setIcon(R.drawable.ic_favorite_on);
         }
         return super.onPrepareOptionsMenu(menu);
@@ -73,7 +73,7 @@ public class MovieInfoActivity extends AppCompatActivity {
         if (item.getItemId() == android.R.id.home) {
             finish();
         } else if (item.getItemId() == R.id.favorite_menu) {
-            if (!helper.checkMovie(this.movie.getId())) {
+            if (!helper.checkMovie(this.movie.getName())) {
                 item.setIcon(R.drawable.ic_favorite_on);
                 helper.open();
                 addToFavorite();
@@ -95,7 +95,7 @@ public class MovieInfoActivity extends AppCompatActivity {
     }
 
     private void removeFromFavorite() {
-        int result = helper.deleteMovie(movie.getId());
+        int result = helper.deleteMovie(movie.getName());
         if (result > a) {
             Toast.makeText(this, getResources().getString(R.string.removed), Toast.LENGTH_SHORT).show();
         } else {
