@@ -61,7 +61,7 @@ public class SeriesInfoActivity extends AppCompatActivity {
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        if (helper.checkSeries(series.getName())) {
+        if (helper.checkSeries(series.getId())) {
             menu.findItem(R.id.favorite_menu).setIcon(R.drawable.ic_favorite_on);
         }
         return super.onPrepareOptionsMenu(menu);
@@ -72,7 +72,7 @@ public class SeriesInfoActivity extends AppCompatActivity {
         if (item.getItemId() == android.R.id.home) {
             finish();
         } else if (item.getItemId() == R.id.favorite_menu) {
-            if (!helper.checkSeries(this.series.getName())) {
+            if (!helper.checkSeries(this.series.getId())) {
                 item.setIcon(R.drawable.ic_favorite_on);
                 helper.open();
                 addToFavorite();
@@ -95,7 +95,7 @@ public class SeriesInfoActivity extends AppCompatActivity {
     }
 
     private void removeFromFavorite() {
-        int result = helper.deleteSeries(series.getName());
+        int result = helper.deleteSeries(series.getId());
         if (result > a) {
             Toast.makeText(this, getResources().getString(R.string.removed), Toast.LENGTH_SHORT).show();
         } else {

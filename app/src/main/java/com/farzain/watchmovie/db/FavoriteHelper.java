@@ -17,13 +17,13 @@ import java.util.ArrayList;
 import static android.provider.BaseColumns._ID;
 import static androidx.constraintlayout.widget.Constraints.TAG;
 import static com.farzain.watchmovie.db.DatabaseContract.TABLE_MOVIE;
-//import static com.farzain.watchmovie.db.DatabaseContract.MovieColumns.ID_MOVIE;
+import static com.farzain.watchmovie.db.DatabaseContract.MovieColumns._ID;
 import static com.farzain.watchmovie.db.DatabaseContract.MovieColumns.TITLE;
 import static com.farzain.watchmovie.db.DatabaseContract.MovieColumns.OVERVIEW;
 import static com.farzain.watchmovie.db.DatabaseContract.MovieColumns.RELESE_DATE;
 import static com.farzain.watchmovie.db.DatabaseContract.MovieColumns.POSTER_PATH;
 import static com.farzain.watchmovie.db.DatabaseContract.TABLE_SERIES;
-//import static com.farzain.watchmovie.db.DatabaseContract.SeriesColumns.ID_SERIES;
+import static com.farzain.watchmovie.db.DatabaseContract.SeriesColumns._ID;
 import static com.farzain.watchmovie.db.DatabaseContract.SeriesColumns.TITLE_SERIES;
 import static com.farzain.watchmovie.db.DatabaseContract.SeriesColumns.OVERVIEW_SERIES;
 import static com.farzain.watchmovie.db.DatabaseContract.SeriesColumns.RELESE_DATE_SERIES;
@@ -96,7 +96,7 @@ public class FavoriteHelper {
     public long insertMovie(Movie movie) {
         Log.d(TAG, "insertMovie: " + movie.getName() + movie.getSynopsis() + movie.getRelease() + movie.getPhoto());
         ContentValues contentValues = new ContentValues();
-//        contentValues.put(ID_MOVIE, movie.getId());
+        contentValues.put(_ID, movie.getId());
         contentValues.put(TITLE, movie.getName());
         contentValues.put(OVERVIEW, movie.getSynopsis());
         contentValues.put(RELESE_DATE, movie.getRelease());
@@ -105,13 +105,13 @@ public class FavoriteHelper {
         return database.insert(DATABASE_MOVIE, null, contentValues);
     }
 
-    public int deleteMovie(String title) {
-        return database.delete(DATABASE_MOVIE, TITLE + " = '" + title + "'", null);
+    public int deleteMovie(int id) {
+        return database.delete(DATABASE_MOVIE, _ID + " = '" + id + "'", null);
     }
 
-    public boolean checkMovie(String title) {
-        String query = "SELECT * FROM " + DATABASE_MOVIE + " WHERE " + TITLE + " =?";
-        Cursor cursor = database.rawQuery(query, new String[]{String.valueOf(title)});
+    public boolean checkMovie(int id) {
+        String query = "SELECT * FROM " + DATABASE_MOVIE + " WHERE " + _ID + " =?";
+        Cursor cursor = database.rawQuery(query, new String[]{String.valueOf(id)});
         boolean exist = false;
         if (cursor.moveToFirst()) {
             exist = true;
@@ -154,7 +154,7 @@ public class FavoriteHelper {
 
     public long insertSeries(Series series) {
         ContentValues contentValues = new ContentValues();
-//        contentValues.put(ID_SERIES, series.getId());
+        contentValues.put(_ID, series.getId());
         contentValues.put(TITLE_SERIES, series.getName());
         contentValues.put(OVERVIEW_SERIES, series.getSynopsis());
         contentValues.put(RELESE_DATE_SERIES, series.getRelease());
@@ -162,14 +162,14 @@ public class FavoriteHelper {
         return database.insert(DATABASE_SERIES, null, contentValues);
     }
 
-    public int deleteSeries(String title) {
+    public int deleteSeries(int id) {
         database.isOpen();
-        return database.delete(DATABASE_SERIES, TITLE_SERIES + " = '" + title + "'", null);
+        return database.delete(DATABASE_SERIES, _ID + " = '" + id + "'", null);
     }
 
-    public boolean checkSeries(String title) {
-        String query = "SELECT * FROM " + DATABASE_SERIES + " WHERE " + TITLE_SERIES + " =?";
-        Cursor cursor = database.rawQuery(query, new String[]{String.valueOf(title)});
+    public boolean checkSeries(int id) {
+        String query = "SELECT * FROM " + DATABASE_SERIES + " WHERE " + _ID + " =?";
+        Cursor cursor = database.rawQuery(query, new String[]{String.valueOf(id)});
         boolean exist = false;
         if (cursor.moveToFirst()) {
             exist = true;
