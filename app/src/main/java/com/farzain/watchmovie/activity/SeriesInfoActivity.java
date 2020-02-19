@@ -23,7 +23,7 @@ public class SeriesInfoActivity extends AppCompatActivity {
     public static final String EXTRA_SERIES = "extra_series";
     private FavoriteHelper helper;
     Series series = new Series();
-    int a = 0;
+    int nope = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +87,7 @@ public class SeriesInfoActivity extends AppCompatActivity {
     private void addToFavorite() {
         helper.open();
         long result = helper.insertSeries(this.series);
-        if (result > a)
+        if (result > nope)
             Toast.makeText(this, getResources().getString(R.string.added), Toast.LENGTH_SHORT).show();
 
         else
@@ -96,7 +96,7 @@ public class SeriesInfoActivity extends AppCompatActivity {
 
     private void removeFromFavorite() {
         int result = helper.deleteSeries(series.getId());
-        if (result > a) {
+        if (result > nope) {
             Toast.makeText(this, getResources().getString(R.string.removed), Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, getResources().getString(R.string.failed_remove), Toast.LENGTH_SHORT).show();

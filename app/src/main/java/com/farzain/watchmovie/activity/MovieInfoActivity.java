@@ -23,7 +23,7 @@ public class MovieInfoActivity extends AppCompatActivity {
     public static final String EXTRA_MOVIE = "extra_movie";
     private FavoriteHelper helper;
     Movie movie = new Movie();
-    int a = 0;
+    int nope = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +87,7 @@ public class MovieInfoActivity extends AppCompatActivity {
 
     private void addToFavorite() {
         long result = helper.insertMovie(this.movie);
-        if (result > a)
+        if (result > nope)
             Toast.makeText(this, getResources().getString(R.string.added), Toast.LENGTH_SHORT).show();
 
         else
@@ -96,7 +96,7 @@ public class MovieInfoActivity extends AppCompatActivity {
 
     private void removeFromFavorite() {
         int result = helper.deleteMovie(movie.getId());
-        if (result > a) {
+        if (result > nope) {
             Toast.makeText(this, getResources().getString(R.string.removed), Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, getResources().getString(R.string.failed_remove), Toast.LENGTH_SHORT).show();

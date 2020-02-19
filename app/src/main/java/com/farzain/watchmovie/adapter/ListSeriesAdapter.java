@@ -27,9 +27,9 @@ public class ListSeriesAdapter extends RecyclerView.Adapter<ListSeriesAdapter.Li
         notifyDataSetChanged();
     }
 
-    private ListMovieAdapter.OnItemClickCallback onItemClickCallback;
+    private ListSeriesAdapter.OnItemClickCallback onItemClickCallback;
 
-    public void setOnItemClickCallback(ListMovieAdapter.OnItemClickCallback onItemClickCallback) {
+    public void setOnItemClickCallback(ListSeriesAdapter.OnItemClickCallback onItemClickCallback) {
         this.onItemClickCallback = onItemClickCallback;
     }
 
@@ -50,13 +50,10 @@ public class ListSeriesAdapter extends RecyclerView.Adapter<ListSeriesAdapter.Li
         return listSeries.size();
     }
 
-    public void setOnItemClickCallback(OnItemClickCallback onItemClickCallback) {
-
-    }
-
     public class ListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView imgPhoto;
-        TextView tvName, tvDescription;
+        TextView tvName;
+        TextView tvDescription;
 
         ListViewHolder(@NonNull View itemView) {
             super(itemView);

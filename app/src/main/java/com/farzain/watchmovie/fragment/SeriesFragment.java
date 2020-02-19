@@ -39,21 +39,8 @@ public class SeriesFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        adapter = new ListSeriesAdapter();
         View view = inflater.inflate(R.layout.fragment_series, container, false);
-        RecyclerView recyclerView = view.findViewById(R.id.rv_seriess);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-        recyclerView.setAdapter(adapter);
-
         progressBar = view.findViewById(R.id.progressBar);
-
-        seriesViewModel = ViewModelProviders.of(this).get(SeriesViewModel.class);
-        seriesViewModel.getSeries().observe(this, getSeries);
-        seriesViewModel.setSeries("EXTRA_SERIES");
-
-
-        Loading(true);
 
         return view;
     }
@@ -63,6 +50,17 @@ public class SeriesFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         rvSeriess = view.findViewById(R.id.rv_seriess);
         rvSeriess.setHasFixedSize(true);
+
+        adapter = new ListSeriesAdapter();
+        RecyclerView recyclerView = view.findViewById(R.id.rv_seriess);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+        recyclerView.setAdapter(adapter);
+
+        seriesViewModel = ViewModelProviders.of(this).get(SeriesViewModel.class);
+        seriesViewModel.getSeries().observe(this, getSeries);
+        seriesViewModel.setSeries("EXTRA_SERIES");
+
+        Loading(true);
     }
 
     private Observer<ArrayList<Series>> getSeries = new Observer<ArrayList<Series>>() {

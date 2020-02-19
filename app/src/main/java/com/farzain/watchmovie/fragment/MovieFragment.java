@@ -38,20 +38,8 @@ public class MovieFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        adapter = new ListMovieAdapter();
         View view = inflater.inflate(R.layout.fragment_movie, container, false);
-        RecyclerView recyclerView = view.findViewById(R.id.rv_movies);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-        recyclerView.setAdapter(adapter);
-
         progressBar = view.findViewById(R.id.progressBar);
-
-        movieViewModel = ViewModelProviders.of(this).get(MovieViewModel.class);
-        movieViewModel.getMovies().observe(this, getMovie);
-        movieViewModel.setMovies("EXTRA_MOVIE");
-
-        Loading(true);
 
         return view;
     }
@@ -61,6 +49,17 @@ public class MovieFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         rvMovies = view.findViewById(R.id.rv_movies);
         rvMovies.setHasFixedSize(true);
+
+        adapter = new ListMovieAdapter();
+        RecyclerView recyclerView = view.findViewById(R.id.rv_movies);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+        recyclerView.setAdapter(adapter);
+
+        movieViewModel = ViewModelProviders.of(this).get(MovieViewModel.class);
+        movieViewModel.getMovies().observe(this, getMovie);
+        movieViewModel.setMovies("EXTRA_MOVIE");
+
+        Loading(true);
     }
 
     private Observer<ArrayList<Movie>> getMovie = new Observer<ArrayList<Movie>>() {

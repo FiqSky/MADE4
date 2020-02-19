@@ -44,6 +44,8 @@ public class FavoriteMovieFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView = view.findViewById(R.id.rv_favorite_movie);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(layoutManager);
 
         helper = FavoriteHelper.getInstance(getContext());
         listMovie = new ArrayList<>();
@@ -58,8 +60,6 @@ public class FavoriteMovieFragment extends Fragment {
         listMovie.addAll(helper.getAllFavoriteMovie());
         adapter.setData(listMovie);
         adapter.notifyDataSetChanged();
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
         adapter.setOnItemClickCallback(new ListMovieAdapter.OnItemClickCallback() {
             @Override
