@@ -56,7 +56,7 @@ public class SeriesFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
         seriesViewModel = ViewModelProviders.of(this).get(SeriesViewModel.class);
-        seriesViewModel.getSeries().observe(this, getSeries);
+        seriesViewModel.getSeries().observe(getViewLifecycleOwner(), getSeries);
         seriesViewModel.setSeries("EXTRA_SERIES");
 
         Loading(true);
