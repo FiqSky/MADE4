@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.farzain.watchmovie.Movie;
 import com.farzain.watchmovie.R;
 import com.farzain.watchmovie.Series;
 import com.farzain.watchmovie.activity.SeriesInfoActivity;
@@ -86,6 +85,7 @@ public class ListSeriesAdapter extends RecyclerView.Adapter<ListSeriesAdapter.Li
             itemView.getContext().startActivity(moveSeriesIntent);
         }
     }
+
     public interface OnItemClickCallback {
         void onItemClicked(Series dataSeries);
     }

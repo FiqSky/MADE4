@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.farzain.watchmovie.Movie;
-import com.farzain.watchmovie.activity.MovieInfoActivity;
 import com.farzain.watchmovie.R;
+import com.farzain.watchmovie.activity.MovieInfoActivity;
 
 import java.util.ArrayList;
 
