@@ -55,7 +55,7 @@ public class MovieFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
         movieViewModel = ViewModelProviders.of(this).get(MovieViewModel.class);
-        movieViewModel.getMovies().observe(this, getMovie);
+        movieViewModel.getMovies().observe(getViewLifecycleOwner(), getMovie);
         movieViewModel.setMovies("EXTRA_MOVIE");
 
         Loading(true);
