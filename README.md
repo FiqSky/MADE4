@@ -28,3 +28,5 @@ Anda sudah mempelajari bagaimana konsep penyimpanan lokal pada aplikasi Android.
 ### Configuration Changes
 * Aplikasi harus bisa menjaga data yang sudah dimuat ketika terjadi pergantian orientasi dari potrait ke landscape atau sebaliknya.
 ---
+![submission_made_4](https://user-images.githubusercontent.com/45449889/74961753-28108480-5441-11ea-8298-2753268e2942.png)
+---
