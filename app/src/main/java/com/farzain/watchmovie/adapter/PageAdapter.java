@@ -15,17 +15,16 @@ import com.farzain.watchmovie.fragment.FavoriteSeriesFragment;
 
 public class PageAdapter extends FragmentPagerAdapter {
     private final Context mContext;
-
-    public PageAdapter(Context context, FragmentManager fm) {
-        super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-        mContext = context;
-    }
-
     @StringRes
     private final int[] TAB_TITLES = new int[]{
             R.string.title_movie,
             R.string.title_series,
     };
+
+    public PageAdapter(Context context, FragmentManager fm) {
+        super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        mContext = context;
+    }
 
     @Nullable
     @Override

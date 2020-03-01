@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.ListViewHolder> {
     private ArrayList<Movie> listMovie = new ArrayList<>();
+    private ListMovieAdapter.OnItemClickCallback onItemClickCallback;
 
     public void setData(ArrayList<Movie> data) {
         listMovie.clear();
@@ -33,8 +34,6 @@ public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.List
         return new ListViewHolder(view);
     }
 
-    private ListMovieAdapter.OnItemClickCallback onItemClickCallback;
-
     public void setOnItemClickCallback(ListMovieAdapter.OnItemClickCallback onItemClickCallback) {
         this.onItemClickCallback = onItemClickCallback;
     }
@@ -47,6 +46,10 @@ public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.List
     @Override
     public int getItemCount() {
         return listMovie.size();
+    }
+
+    public interface OnItemClickCallback {
+        void onItemClicked(Movie data);
     }
 
     public class ListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -88,9 +91,5 @@ public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.List
             moveIntent.putExtra(MovieInfoActivity.EXTRA_MOVIE, datamovie);
             itemView.getContext().startActivity(moveIntent);
         }
-    }
-
-    public interface OnItemClickCallback {
-        void onItemClicked(Movie data);
     }
 }

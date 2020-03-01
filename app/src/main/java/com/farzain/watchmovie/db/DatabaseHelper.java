@@ -5,10 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    public static String DATABASE_NAME = "dbwatchmovie";
-
     private static final int DATABASE_VERSION = 1;
-
     private static final String SQL_CREATE_TABLE_MOVIE = String.format("CREATE TABLE %s"
                     + " (%s INTEGER PRIMARY KEY AUTOINCREMENT," +
                     " %s TEXT NOT NULL," +
@@ -22,7 +19,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             DatabaseContract.MovieColumns.RELESE_DATE,
             DatabaseContract.MovieColumns.POSTER_PATH
     );
-
     private static final String SQL_CREATE_TABLE_SERIES = String.format("CREATE TABLE %s"
                     + " (%s INTEGER PRIMARY KEY AUTOINCREMENT," +
                     " %s TEXT NOT NULL," +
@@ -36,6 +32,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             DatabaseContract.SeriesColumns.RELESE_DATE_SERIES,
             DatabaseContract.SeriesColumns.POSTER_PATH_SERIES
     );
+    public static String DATABASE_NAME = "dbwatchmovie";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

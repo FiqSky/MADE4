@@ -21,9 +21,9 @@ import com.farzain.watchmovie.db.FavoriteHelper;
 public class SeriesInfoActivity extends AppCompatActivity {
 
     public static final String EXTRA_SERIES = "extra_series";
-    private FavoriteHelper helper;
     Series series = new Series();
     int nope = 0;
+    private FavoriteHelper helper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

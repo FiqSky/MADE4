@@ -30,6 +30,17 @@ public class MovieFragment extends Fragment {
     private MovieViewModel movieViewModel;
     private ListMovieAdapter adapter;
     private ProgressBar progressBar;
+    private Observer<ArrayList<Movie>> getMovie = new Observer<ArrayList<Movie>>() {
+        @Override
+        public void onChanged(ArrayList<Movie> movie) {
+            if (movie != null) {
+                adapter.setData(movie);
+            }
+
+            Loading(false);
+
+        }
+    };
 
     public MovieFragment() {
         // Required empty public constructor
@@ -60,18 +71,6 @@ public class MovieFragment extends Fragment {
 
         Loading(true);
     }
-
-    private Observer<ArrayList<Movie>> getMovie = new Observer<ArrayList<Movie>>() {
-        @Override
-        public void onChanged(ArrayList<Movie> movie) {
-            if (movie != null) {
-                adapter.setData(movie);
-            }
-
-            Loading(false);
-
-        }
-    };
 
     private void Loading(Boolean state) {
         if (state) {

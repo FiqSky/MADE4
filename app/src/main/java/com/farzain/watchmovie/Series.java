@@ -4,6 +4,17 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Series implements Parcelable {
+    public static final Creator<Series> CREATOR = new Creator<Series>() {
+        @Override
+        public Series createFromParcel(Parcel in) {
+            return new Series(in);
+        }
+
+        @Override
+        public Series[] newArray(int size) {
+            return new Series[size];
+        }
+    };
     private int id;
     private String name;
     private String synopsis;
@@ -17,18 +28,6 @@ public class Series implements Parcelable {
         photo = in.readString();
         release = in.readString();
     }
-
-    public static final Creator<Series> CREATOR = new Creator<Series>() {
-        @Override
-        public Series createFromParcel(Parcel in) {
-            return new Series(in);
-        }
-
-        @Override
-        public Series[] newArray(int size) {
-            return new Series[size];
-        }
-    };
 
     public Series() {
     }

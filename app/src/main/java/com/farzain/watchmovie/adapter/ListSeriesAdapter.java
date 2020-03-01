@@ -19,14 +19,13 @@ import java.util.ArrayList;
 
 public class ListSeriesAdapter extends RecyclerView.Adapter<ListSeriesAdapter.ListViewHolder> {
     private ArrayList<Series> listSeries = new ArrayList<>();
+    private ListSeriesAdapter.OnItemClickCallback onItemClickCallback;
 
     public void setSeriesData(ArrayList<Series> seriesData) {
         listSeries.clear();
         listSeries.addAll(seriesData);
         notifyDataSetChanged();
     }
-
-    private ListSeriesAdapter.OnItemClickCallback onItemClickCallback;
 
     public void setOnItemClickCallback(ListSeriesAdapter.OnItemClickCallback onItemClickCallback) {
         this.onItemClickCallback = onItemClickCallback;
@@ -47,6 +46,10 @@ public class ListSeriesAdapter extends RecyclerView.Adapter<ListSeriesAdapter.Li
     @Override
     public int getItemCount() {
         return listSeries.size();
+    }
+
+    public interface OnItemClickCallback {
+        void onItemClicked(Series dataSeries);
     }
 
     public class ListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -84,9 +87,5 @@ public class ListSeriesAdapter extends RecyclerView.Adapter<ListSeriesAdapter.Li
             moveSeriesIntent.putExtra(SeriesInfoActivity.EXTRA_SERIES, dataseries);
             itemView.getContext().startActivity(moveSeriesIntent);
         }
-    }
-
-    public interface OnItemClickCallback {
-        void onItemClicked(Series dataSeries);
     }
 }

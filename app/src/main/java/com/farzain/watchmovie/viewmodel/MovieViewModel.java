@@ -23,6 +23,10 @@ public class MovieViewModel extends ViewModel {
     private static final String API_KEY = "90f828ee41b521c823dd351d6b67affa";
     private MutableLiveData<ArrayList<Movie>> listMovies = new MutableLiveData<>();
 
+    public LiveData<ArrayList<Movie>> getMovies() {
+        return listMovies;
+    }
+
     public void setMovies(final String movie) {
         AsyncHttpClient client = new AsyncHttpClient();
         final ArrayList<Movie> listItems = new ArrayList<>();
@@ -59,9 +63,5 @@ public class MovieViewModel extends ViewModel {
                 Log.d("onFailure", error.getMessage());
             }
         });
-    }
-
-    public LiveData<ArrayList<Movie>> getMovies() {
-        return listMovies;
     }
 }

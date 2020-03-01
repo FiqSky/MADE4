@@ -30,7 +30,15 @@ public class SeriesFragment extends Fragment {
     private ProgressBar progressBar;
     private ListSeriesAdapter adapter;
     private SeriesViewModel seriesViewModel;
-
+    private Observer<ArrayList<Series>> getSeries = new Observer<ArrayList<Series>>() {
+        @Override
+        public void onChanged(ArrayList<Series> series) {
+            if (series != null) {
+                adapter.setSeriesData(series);
+            }
+            Loading(false);
+        }
+    };
 
     public SeriesFragment() {
         // Required empty public constructor
@@ -61,16 +69,6 @@ public class SeriesFragment extends Fragment {
 
         Loading(true);
     }
-
-    private Observer<ArrayList<Series>> getSeries = new Observer<ArrayList<Series>>() {
-        @Override
-        public void onChanged(ArrayList<Series> series) {
-            if (series != null) {
-                adapter.setSeriesData(series);
-            }
-            Loading(false);
-        }
-    };
 
     private void Loading(Boolean state) {
         if (state) {

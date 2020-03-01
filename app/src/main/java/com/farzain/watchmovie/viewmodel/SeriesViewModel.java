@@ -23,6 +23,10 @@ public class SeriesViewModel extends ViewModel {
     private static final String API_KEY = "90f828ee41b521c823dd351d6b67affa";
     private MutableLiveData<ArrayList<Series>> listSeries = new MutableLiveData<>();
 
+    public LiveData<ArrayList<Series>> getSeries() {
+        return listSeries;
+    }
+
     public void setSeries(final String series) {
         AsyncHttpClient client = new AsyncHttpClient();
         final ArrayList<Series> listItem = new ArrayList<>();
@@ -63,9 +67,5 @@ public class SeriesViewModel extends ViewModel {
 
         });
 
-    }
-
-    public LiveData<ArrayList<Series>> getSeries() {
-        return listSeries;
     }
 }
